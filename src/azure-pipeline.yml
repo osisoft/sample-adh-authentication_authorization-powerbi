@@ -5,7 +5,7 @@ trigger:
       - master
   paths:
     include:
-      - '/basic_samples/Authentication/AuthorizationCodeFlow/PowerBI'
+      - '/src/'
 
 pr:
   branches:
@@ -13,7 +13,7 @@ pr:
       - master
   paths:
     include:
-      - '/basic_samples/Authentication/AuthorizationCodeFlow/PowerBI'
+      - '/src/'
 
 schedules:
   - cron: '0 0 * * 0'
@@ -23,10 +23,17 @@ schedules:
         - master
     always: true
 
+resources:
+  repositories:
+  - repository: templates
+    type: github
+    name: osisoft/OSI-Samples
+    endpoint: osisoft/OSI-Samples
+
 variables:
-  - template: '/miscellaneous/build_templates/variables.yml'
+  - template: '/miscellaneous/build_templates/variables.yml@templates'
   - name: projPath
-    value: '/basic_samples/Authentication/AuthorizationCodeFlow/PowerBI'
+    value: '/src/'
   - name: CredFile
     value: client_id
   - name: CredFileLibrary
@@ -52,25 +59,25 @@ jobs:
       name: 00-OSIManaged-Test
       demands: COMPUTERNAME -equals $(buildAgent)
     steps:
-      - template: '/miscellaneous/build_templates/config.yml'
+      - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFile)
           fileLibrary: $(CredFileLibrary)
           filePath: $(projPath)/OCSConnector
 
-      - template: '/miscellaneous/build_templates/config.yml'
+      - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileTenantID)
           fileLibrary: $(CredFileTenantIDLibrary)
           filePath: $(projPath)/OCSConnector
 
-      - template: '/miscellaneous/build_templates/config.yml'
+      - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileURL)
           fileLibrary: $(CredFileURLLibrary)
           filePath: $(projPath)/OCSConnector
 
-      - template: '/miscellaneous/build_templates/config.yml'
+      - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileTest)
           fileLibrary: $(CredFileTestLibrary)
@@ -102,6 +109,6 @@ jobs:
         displayName: 'Stop test processes'
         condition: succeededOrFailed()
 
-  - template: '/miscellaneous/build_templates/analysis.yml'
+  - template: '/miscellaneous/build_templates/analysis.yml@templates'
     parameters:
       language: powerbi
