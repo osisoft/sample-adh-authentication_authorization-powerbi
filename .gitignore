@@ -223,6 +223,17 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
+#############
+## PowerBI
+#############
+bin/
+obj/
+
+# Credentials Files
+client_id
+tenant_id
+url
+
 ##############
 ## JavaScript
 # Logs
