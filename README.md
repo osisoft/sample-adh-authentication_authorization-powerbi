@@ -102,7 +102,7 @@ in
 
 ## Tests
 
-Included is an automated test that runs the Appium WebDriver to make sure that the OCS Connector sample works. To run this test, you must fill in the [AppSettings.cs](OCSConnectorTest/AppSettings.cs) with the OCS URL and a tenant ID that allows login via Personal Microsoft Accounts. You must also fill in the email address and password of a Microsoft Account to use for login.
+Included is an automated test that runs the Appium WebDriver to make sure that the OCS Connector sample works. To run this test, you must fill in the [AppSettings.json](OCSConnectorTest/AppSettings.json) with the OCS URL and a tenant ID that allows login via Personal Microsoft Accounts. You must also fill in the email address and password of a Microsoft Account to use for login.
 
 This test will attempt to clear saved credentials, open the connector, and log in to OSIsoft Cloud Services using the provided credentials, then query the namespaces in that tenant. If this is successful, the test will pass.
 
