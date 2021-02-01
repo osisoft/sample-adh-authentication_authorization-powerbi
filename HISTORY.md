@@ -1,5 +1,10 @@
 # Version History
 
+## 1.0.12 / 2021-01-27
+
+- Updated dependencies
+- Migrated to new styling guide
+
 ## 1.0.11 / 2020-11-02
 
 - Updated dependencies
