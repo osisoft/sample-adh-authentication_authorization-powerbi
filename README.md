@@ -102,7 +102,7 @@ in
 
 ## Tests
 
-Included is an automated test that runs the Appium WebDriver to make sure that the OCS Connector sample works. To run this test, you must fill in the [appsettings.json](OCSConnectorTest/appsettings.json) with the OCS URL and a tenant ID that allows login via Personal Microsoft Accounts. You must also fill in the email address and password of a Microsoft Account to use for login.
+Included is an automated test that runs the Appium WebDriver to make sure that the OCS Connector sample works. To run this test, you must fill in the [AppSettings.json](OCSConnectorTest/appsettings.placeholder.json) with the OCS URL and a tenant ID that allows login via Personal Microsoft Accounts. You must also fill in the email address and password of a Microsoft Account to use for login.
 
 This test will attempt to clear saved credentials, open the connector, and log in to OSIsoft Cloud Services using the provided credentials, then query the namespaces in that tenant. If this is successful, the test will pass.
 
@@ -119,6 +119,6 @@ dotnet test
 
 ---
 
-For the general steps or switch languages see the Task [ReadMe](../../../)  
-For the main OCS page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS)  
-For the main samples page on master [ReadMe](https://github.com/osisoft/OSI-Samples)
+For the main OCS Authentication samples page on master [ReadMe](https://github.com/osisoft/OSI-Samples-OCS/blob/master/docs/AUTHENTICATION_README.md)  
+For the main OCS samples page on master [ReadMe](https://github.com/osisoft/OSI-Samples-OCS)  
+For the main OSIsoft samples page on master [ReadMe](https://github.com/osisoft/OSI-Samples)
