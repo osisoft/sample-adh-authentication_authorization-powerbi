@@ -45,7 +45,7 @@ namespace OCSConnectorTest
             using var powerBISession = new WindowsDriver<WindowsElement>(appiumUri, powerBIOptions);
 
             // Close Start window
-            var startWindow = powerBISession.TryFindElementByAccessibilityId("KoStartDialog", 10);
+            var startWindow = powerBISession.TryFindElementByAccessibilityId("KoStartDialog");
             if (startWindow != null)
             {
                 var closeStart = startWindow.FindElementByName("Close");
