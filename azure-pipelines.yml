@@ -55,25 +55,25 @@ jobs:
         parameters:
           fileOriginal: $(CredFile)
           fileLibrary: $(CredFileLibrary)
-          filePath: OCSConnector
+          filePath: /OCSConnector
 
       - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileTenantID)
           fileLibrary: $(CredFileTenantIDLibrary)
-          filePath: OCSConnector
+          filePath: /OCSConnector
 
       - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileURL)
           fileLibrary: $(CredFileURLLibrary)
-          filePath: OCSConnector
+          filePath: /OCSConnector
 
       - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileTest)
           fileLibrary: $(CredFileTestLibrary)
-          filePath: OCSConnectorTest
+          filePath: /OCSConnectorTest
 
       - script: |
           dir
