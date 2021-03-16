@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using Newtonsoft.Json;
@@ -17,28 +19,26 @@ namespace OCSConnectorTest
         [Fact]
         public void OCSConnectorTest()
         {
-            // Load test settings
-            Settings = JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\appsettings.json"));
-
-            // Start inspect.exe
-            var appiumUri = new Uri("http://127.0.0.1:4723");
-            var inspectOptions = new AppiumOptions();
-            inspectOptions.AddAdditionalCapability("app", @"C:\Program Files (x86)\Windows Kits\10\bin\x86\inspect.exe");
-            using var inspectSession = new WindowsDriver<WindowsElement>(appiumUri, inspectOptions);
-
-            // Start Power BI
-            var splashOptions = new AppiumOptions();
-            splashOptions.AddAdditionalCapability("app", @"C:\Program Files\Microsoft Power BI Desktop\bin\PBIDesktop.exe");
-            using var splashSession = new WindowsDriver<WindowsElement>(appiumUri, splashOptions, TimeSpan.FromMinutes(1));
-
-            // Find main Power BI Window
-            var desktopOptions = new AppiumOptions();
-            desktopOptions.AddAdditionalCapability("app", "Root");
-            using var desktopSession = new WindowsDriver<WindowsElement>(appiumUri, desktopOptions);
-            desktopSession.StartRecordingScreen();
-
             try
             {
+                // Load test settings
+                Settings = JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\appsettings.json"));
+
+                // Start inspect.exe
+                var appiumUri = new Uri("http://127.0.0.1:4723");
+                var inspectOptions = new AppiumOptions();
+                inspectOptions.AddAdditionalCapability("app", @"C:\Program Files (x86)\Windows Kits\10\bin\x86\inspect.exe");
+                using var inspectSession = new WindowsDriver<WindowsElement>(appiumUri, inspectOptions);
+
+                // Start Power BI
+                var splashOptions = new AppiumOptions();
+                splashOptions.AddAdditionalCapability("app", @"C:\Program Files\Microsoft Power BI Desktop\bin\PBIDesktop.exe");
+                using var splashSession = new WindowsDriver<WindowsElement>(appiumUri, splashOptions, TimeSpan.FromMinutes(1));
+
+                // Find main Power BI Window
+                var desktopOptions = new AppiumOptions();
+                desktopOptions.AddAdditionalCapability("app", "Root");
+                using var desktopSession = new WindowsDriver<WindowsElement>(appiumUri, desktopOptions);
                 var powerBIWindow = desktopSession.TryFindElementByName("Untitled - Power BI Desktop");
                 var powerBIWindowHandle = powerBIWindow.GetAttribute("NativeWindowHandle");
                 powerBIWindowHandle = int.Parse(powerBIWindowHandle, CultureInfo.InvariantCulture)
@@ -145,9 +145,15 @@ namespace OCSConnectorTest
             }
             catch
             {
-                var video = desktopSession.StopRecordingScreen();
-                var decoded = Convert.FromBase64String(video);
-                File.WriteAllBytes("test_recording.mp4", decoded);
+                using var bitmap = new Bitmap(1920, 1080);
+                using (var g = Graphics.FromImage(bitmap))
+                {
+                    g.CopyFromScreen(0, 0, 0, 0,
+                    bitmap.Size, CopyPixelOperation.SourceCopy);
+                }
+
+                bitmap.Save("screenshot.png", ImageFormat.Png);
+
                 throw;
             }
         }

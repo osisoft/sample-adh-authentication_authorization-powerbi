@@ -100,9 +100,9 @@ jobs:
         displayName: 'Stop test processes'
         condition: succeededOrFailed()
 
-      - publish: $(System.SourcesDirectory)\OCSConnectorTest\test_recording.mp4
-        artifact: TestRecording
-        displayName: 'Publish test recording'
+      - publish: $(System.SourcesDirectory)\OCSConnectorTest\screenshot.png
+        artifact: TestScreenshot
+        displayName: 'Publish screenshot'
         condition: failed()
 
       - template: '/miscellaneous/build_templates/analysis.yml@templates'
