@@ -50,6 +50,11 @@ OCSConnectorType = type function(
         Documentation.FieldDescription = "OSIsoft Cloud Services API path and parameters",
         Documentation.SampleValues = {"https://dat-b.osisoft.com/api/v1/Tenants/{tenantId}/Namespaces"}
     ]),
+    optional communityId as (type text meta [
+        Documentation.FieldCaption = "OSIsoft Cloud Services Community ID",
+        Documentation.FieldDescription = "Id of a Community to use if making a call to a Communities API",
+        Documentation.SampleValues = {"0000000-0000-0000-0000-000000000000"}
+    ]),
     optional timeout as (type number meta [
         Documentation.FieldCaption = "Timeout",
         Documentation.FieldDescription = "Timeout in seconds for API request",
@@ -59,12 +64,16 @@ OCSConnectorType = type function(
         Documentation.Name = "OSIsoft Cloud Services API Request"
     ];
 
-OCSConnectorImpl = (url as text, optional timeout as number) =>
+OCSConnectorImpl = (url as text, optional communityId as text, optional timeout as number) =>
     let
         url = url,
         source = if timeout = null
-        then Web.Contents(url)
-        else Web.Contents(url, [ Headers = [#"Request-Timeout" = Number.ToText(timeout)], Timeout = #duration(0,0,0,timeout)])
+        then if communityId = null 
+            then Web.Contents(url)
+            else Web.Contents(url, [ Headers = [#"Community-id" = communityId]])
+        else if communityId = null 
+            then Web.Contents(url, [ Headers = [#"Request-Timeout" = Number.ToText(timeout)], Timeout = #duration(0,0,0,timeout)])
+            else Web.Contents(url, [ Headers = [#"Request-Timeout" = Number.ToText(timeout), #"Community-id" = communityId], Timeout = #duration(0,0,0,timeout)])
     in
         source;
 
