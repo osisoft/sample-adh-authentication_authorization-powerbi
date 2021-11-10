@@ -52,7 +52,7 @@ OCSConnectorType = type function(
     ]),
     optional communityId as (type text meta [
         Documentation.FieldCaption = "OSIsoft Cloud Services Community ID",
-        Documentation.FieldDescription = "Id of a Community to use if making a call to a Communities API",
+        Documentation.FieldDescription = "Id of the Community to use if making a call to a Communities API",
         Documentation.SampleValues = {"0000000-0000-0000-0000-000000000000"}
     ]),
     optional timeout as (type number meta [
