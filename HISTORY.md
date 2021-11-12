@@ -1,5 +1,9 @@
 # Version History
 
+## 1.0.17 / 2021-11-12
+
+- Add support for a community id to make communities API calls
+
 ## 1.0.16 / 2021-08-13
 
 - Cleaned up gitignore
