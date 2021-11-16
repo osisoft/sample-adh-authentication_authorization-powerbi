@@ -66,14 +66,26 @@ OCSConnectorType = type function(
 
 OCSConnectorImpl = (url as text, optional communityId as text, optional timeout as number) =>
     let
+        communityIdHeader = [#"Community-id" = communityId],
+
+        requestTimeoutHeader = if timeout <> null then [#"Request-Timeout" = Number.ToText(timeout)] else null,
+        requestTimeout = if timeout <> null then #duration(0,0,0,timeout) else null,
+
         url = url,
         source = if timeout = null
         then if communityId = null 
-            then Web.Contents(url)
-            else Web.Contents(url, [ Headers = [#"Community-id" = communityId]])
+                // both community id and timeout are null
+                then Web.Contents(url)
+            else
+                // only community id is specified
+                Web.Contents(url, [Headers = communityIdHeader, Timeout = requestTimeout])
         else if communityId = null 
-            then Web.Contents(url, [ Headers = [#"Request-Timeout" = Number.ToText(timeout)], Timeout = #duration(0,0,0,timeout)])
-            else Web.Contents(url, [ Headers = [#"Request-Timeout" = Number.ToText(timeout), #"Community-id" = communityId], Timeout = #duration(0,0,0,timeout)])
+            then 
+                // only timeout is specified
+                Web.Contents(url, [Headers = requestTimeoutHeader, Timeout = requestTimeout])
+            else
+                // both community id and timeout are specified
+                Web.Contents(url, [Headers = Record.Combine({communityIdHeader as record, requestTimeoutHeader as record}), Timeout = requestTimeout])
     in
         source;
 
