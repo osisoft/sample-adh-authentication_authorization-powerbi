@@ -50,6 +50,11 @@ OCSConnectorType = type function(
         Documentation.FieldDescription = "OSIsoft Cloud Services API path and parameters",
         Documentation.SampleValues = {"https://dat-b.osisoft.com/api/v1/Tenants/{tenantId}/Namespaces"}
     ]),
+    optional communityId as (type text meta [
+        Documentation.FieldCaption = "OSIsoft Cloud Services Community ID",
+        Documentation.FieldDescription = "Id of the Community to use if making a call to a Communities API",
+        Documentation.SampleValues = {"0000000-0000-0000-0000-000000000000"}
+    ]),
     optional timeout as (type number meta [
         Documentation.FieldCaption = "Timeout",
         Documentation.FieldDescription = "Timeout in seconds for API request",
@@ -59,12 +64,27 @@ OCSConnectorType = type function(
         Documentation.Name = "OSIsoft Cloud Services API Request"
     ];
 
-OCSConnectorImpl = (url as text, optional timeout as number) =>
+OCSConnectorImpl = (url as text, optional communityId as text, optional timeout as number) =>
     let
+        communityIdHeader = [#"Community-id" = communityId],
+        requestTimeoutHeader = if timeout <> null then [#"Request-Timeout" = Number.ToText(timeout)] else null,
+        requestTimeout = if timeout <> null then #duration(0,0,0,timeout) else null,
+
         url = url,
         source = if timeout = null
-        then Web.Contents(url)
-        else Web.Contents(url, [ Headers = [#"Request-Timeout" = Number.ToText(timeout)], Timeout = #duration(0,0,0,timeout)])
+        then if communityId = null 
+                // both community id and timeout are null
+                then Web.Contents(url)
+            else
+                // only community id is specified
+                Web.Contents(url, [Headers = communityIdHeader, Timeout = requestTimeout])
+        else if communityId = null 
+            then 
+                // only timeout is specified
+                Web.Contents(url, [Headers = requestTimeoutHeader, Timeout = requestTimeout])
+            else
+                // both community id and timeout are specified
+                Web.Contents(url, [Headers = Record.Combine({communityIdHeader as record, requestTimeoutHeader as record}), Timeout = requestTimeout])
     in
         source;
 
