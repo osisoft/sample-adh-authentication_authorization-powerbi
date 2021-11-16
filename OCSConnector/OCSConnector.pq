@@ -67,7 +67,6 @@ OCSConnectorType = type function(
 OCSConnectorImpl = (url as text, optional communityId as text, optional timeout as number) =>
     let
         communityIdHeader = [#"Community-id" = communityId],
-
         requestTimeoutHeader = if timeout <> null then [#"Request-Timeout" = Number.ToText(timeout)] else null,
         requestTimeout = if timeout <> null then #duration(0,0,0,timeout) else null,
 
