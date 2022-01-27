@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OCSConnectorTest
+namespace ADHConnectorTest
 {
     public class AppSettings
     {
-        public string OcsAddress { get; set; }
-        public string OcsTenantId { get; set; }
+        public string AdhAddress { get; set; }
+        public string AdhTenantId { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
     }

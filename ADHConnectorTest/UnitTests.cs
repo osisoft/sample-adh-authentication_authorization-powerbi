@@ -7,14 +7,14 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
 
-namespace OCSConnectorTest
+namespace ADHConnectorTest
 {
     public class UnitTests
     {
         public static AppSettings Settings { get; set; }
 
         [Fact]
-        public void OCSConnectorTest()
+        public void ADHConnectorTest()
         {
             // Load test settings
             Settings = JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\appsettings.json"));
@@ -71,19 +71,19 @@ namespace OCSConnectorTest
             var close = dataSourceSettingsDialog.TryFindElementByName("Close");
             close.Click();
 
-            // Open OCS Connector
+            // Open ADH Connector
             var getData = powerBISession.TryFindElementByName("Get data");
             var getDataWindow = powerBISession.TryClickAndFindElementByAccessibilityId(getData, "DataSourceGalleryDialog");
             var search = getDataWindow.FindElementByName("Search");
             search.SendKeys("OSI");
 
-            var sample = getDataWindow.TryFindElementByName("OSIsoft Cloud Services Sample (Beta)");
+            var sample = getDataWindow.TryFindElementByName("AVEVA Data Hub Sample (Beta)");
             var connect = getDataWindow.TryClickAndFindElementByName(sample, "Connect");
 
             // Enter query info
             var builderDialog = powerBISession.TryClickAndFindElementByAccessibilityId(connect, "BuilderDialog");
-            var uri = builderDialog.TryFindElementsByName("OSIsoft Cloud Services API Path");
-            uri[1].SendKeys($"{Settings.OcsAddress}/api/v1/Tenants/{Settings.OcsTenantId}/Namespaces");
+            var uri = builderDialog.TryFindElementsByName("AVEVA Data Hub API Path");
+            uri[1].SendKeys($"{Settings.AdhAddress}/api/v1/Tenants/{Settings.AdhTenantId}/Namespaces");
 
             var timeout = builderDialog.TryFindElementsByName("Timeout (optional)");
             timeout[1].SendKeys("100");

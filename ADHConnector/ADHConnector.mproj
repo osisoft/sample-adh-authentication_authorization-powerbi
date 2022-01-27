@@ -18,7 +18,7 @@
     <SuppressCellErrors>False</SuppressCellErrors>
     <MaxRows>1000</MaxRows>
     <ExtensionProject>Yes</ExtensionProject>
-    <Name>OCSConnector</Name>
+    <Name>ADHConnector</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>false</DebugSymbols>
@@ -36,48 +36,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OCSConnector.pq">
+    <Compile Include="ADHConnector.pq">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="OCSConnector_Sample16.png">
+    <Compile Include="ADHConnector_Sample16.png">
       <SubType>Compile</SubType>
     </Compile>
-    <Compile Include="OCSConnector_Sample20.png">
+    <Compile Include="ADHConnector_Sample20.png">
       <SubType>Compile</SubType>
     </Compile>
-    <Compile Include="OCSConnector_Sample24.png">
+    <Compile Include="ADHConnector_Sample24.png">
       <SubType>Compile</SubType>
     </Compile>
-    <Compile Include="OCSConnector_Sample32.png">
+    <Compile Include="ADHConnector_Sample32.png">
       <SubType>Compile</SubType>
     </Compile>
-    <Compile Include="OCSConnector_Sample40.png">
+    <Compile Include="ADHConnector_Sample40.png">
       <SubType>Compile</SubType>
     </Compile>
-    <Compile Include="OCSConnector_Sample48.png">
+    <Compile Include="ADHConnector_Sample48.png">
       <SubType>Compile</SubType>
     </Compile>
-    <Compile Include="OCSConnector_Sample64.png">
+    <Compile Include="ADHConnector_Sample64.png">
       <SubType>Compile</SubType>
     </Compile>
-    <Compile Include="OCSConnector_Sample80.png">
+    <Compile Include="ADHConnector_Sample80.png">
       <SubType>Compile</SubType>
     </Compile>
     <Compile Include="resources.resx">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="client_id">
+    <Content Include="client_id.placeholder">
       <SubType>Content</SubType>
-    </Compile>
-    <Content Include="OCSConnector.query.pq">
+    </Content>
+    <Content Include="ADHConnector.query.pq">
       <SubType>Code</SubType>
     </Content>
-    <Compile Include="tenant_id">
+    <Content Include="tenant_id.placeholder">
       <SubType>Content</SubType>
-    </Compile>
-    <Compile Include="url">
+    </Content>
+    <Content Include="url.placeholder">
       <SubType>Content</SubType>
-    </Compile>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="BuildExtension" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v12.0.dll">
