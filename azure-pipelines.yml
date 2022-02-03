@@ -55,30 +55,30 @@ jobs:
         parameters:
           fileOriginal: $(CredFile)
           fileLibrary: $(CredFileLibrary)
-          filePath: /OCSConnector
+          filePath: /ADHConnector
 
       - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileTenantID)
           fileLibrary: $(CredFileTenantIDLibrary)
-          filePath: /OCSConnector
+          filePath: /ADHConnector
 
       - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileURL)
           fileLibrary: $(CredFileURLLibrary)
-          filePath: /OCSConnector
+          filePath: /ADHConnector
 
       - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileTest)
           fileLibrary: $(CredFileTestLibrary)
-          filePath: /OCSConnectorTest
+          filePath: /ADHConnectorTest
 
       - script: |
           call vsdevcmd
           call msbuild -t:rebuild"
-          call copy /y ".\OCSConnector\bin\Debug\OCSConnector.mez" "C:\Users\$(username)\Documents\Power BI Desktop\Custom Connectors"
+          call copy /y ".\ADHConnector\bin\Debug\ADHConnector.mez" "C:\Users\$(username)\Documents\Power BI Desktop\Custom Connectors"
         displayName: 'Build'
 
       - script: start cmd /c "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe"
@@ -90,7 +90,7 @@ jobs:
           command: test
           publishTestResults: true
           testRunTitle: '$(Agent.JobName) on $(Agent.OS)'
-          workingDirectory: $(Build.SourcesDirectory)\OCSConnectorTest
+          workingDirectory: $(Build.SourcesDirectory)\ADHConnectorTest
 
       - script: |
           taskkill /F /IM PBIDesktop.exe
@@ -108,25 +108,25 @@ jobs:
         parameters:
           fileOriginal: $(CredFile)
           fileLibrary: $(CredFileLibrary)
-          filePath: /OCSConnector
+          filePath: /ADHConnector
 
       - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileTenantID)
           fileLibrary: $(CredFileTenantIDLibrary)
-          filePath: /OCSConnector
+          filePath: /ADHConnector
 
       - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileURL)
           fileLibrary: $(CredFileURLLibrary)
-          filePath: /OCSConnector
+          filePath: /ADHConnector
 
       - template: '/miscellaneous/build_templates/config.yml@templates'
         parameters:
           fileOriginal: $(CredFileTest)
           fileLibrary: $(CredFileTestLibrary)
-          filePath: /OCSConnectorTest
+          filePath: /ADHConnectorTest
 
       - script: |
           call vsdevcmd
