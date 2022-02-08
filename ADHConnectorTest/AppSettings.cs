@@ -6,8 +6,8 @@ namespace ADHConnectorTest
 {
     public class AppSettings
     {
-        public string AdhAddress { get; set; }
-        public string AdhTenantId { get; set; }
+        public string OcsAddress { get; set; }
+        public string OcsTenantId { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
     }
