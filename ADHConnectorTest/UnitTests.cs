@@ -72,10 +72,10 @@ namespace ADHConnectorTest
             close.Click();
 
             // Open ADH Connector
-            var getData = powerBISession.TryFindElementByName("Get data");
+            var getData = powerBISession.FindElementByXPath("//Button[@Name='Get data']");
             var getDataWindow = powerBISession.TryClickAndFindElementByAccessibilityId(getData, "DataSourceGalleryDialog");
             var search = getDataWindow.FindElementByName("Search");
-            search.SendKeys("OSI");
+            search.SendKeys("AVEVA");
 
             var sample = getDataWindow.TryFindElementByName("AVEVA Data Hub Sample (Beta)");
             var connect = getDataWindow.TryClickAndFindElementByName(sample, "Connect");
