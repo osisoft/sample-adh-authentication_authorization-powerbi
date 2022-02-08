@@ -84,7 +84,7 @@ namespace ADHConnectorTest
             // Enter query info
             var builderDialog = powerBISession.TryClickAndFindElementByAccessibilityId(connect, "BuilderDialog");
             var uri = builderDialog.TryFindElementsByName("AVEVA Data Hub API Path");
-            uri[1].SendKeys($"{Settings.AdhAddress}/api/v1/Tenants/{Settings.AdhTenantId}/Namespaces");
+            uri[1].SendKeys($"{Settings.OcsAddress}/api/v1/Tenants/{Settings.OcsTenantId}/Namespaces");
 
             var timeout = builderDialog.TryFindElementsByName("Timeout (optional)");
             timeout[1].SendKeys("100");
