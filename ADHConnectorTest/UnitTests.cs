@@ -81,10 +81,6 @@ namespace ADHConnectorTest
             var sample = getDataWindow.TryFindElementByName("AVEVA Data Hub Sample (Beta)");
             var connect = getDataWindow.TryClickAndFindElementByName(sample, "Connect");
 
-            Thread.Sleep(3000);
-            var thirdPartyDialog = powerBISession.FindElementByAccessibilityId("ThirdPartyWarningDialog");
-            thirdPartyDialog.FindElementByName("Continue").Click();
-
             // Enter query info
             var builderDialog = powerBISession.TryClickAndFindElementByAccessibilityId(connect, "BuilderDialog");
             var uri = builderDialog.TryFindElementsByName("AVEVA Data Hub API Path");
