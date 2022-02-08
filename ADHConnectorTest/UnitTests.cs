@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Threading;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
@@ -79,6 +80,10 @@ namespace ADHConnectorTest
 
             var sample = getDataWindow.TryFindElementByName("AVEVA Data Hub Sample (Beta)");
             var connect = getDataWindow.TryClickAndFindElementByName(sample, "Connect");
+
+            Thread.Sleep(3000);
+            var thirdPartyDialog = powerBISession.FindElementByAccessibilityId("ThirdPartyWarningDialog");
+            thirdPartyDialog.FindElementByName("Continue").Click();
 
             // Enter query info
             var builderDialog = powerBISession.TryClickAndFindElementByAccessibilityId(connect, "BuilderDialog");
