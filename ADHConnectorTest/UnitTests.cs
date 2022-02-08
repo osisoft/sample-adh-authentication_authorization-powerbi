@@ -55,8 +55,8 @@ namespace ADHConnectorTest
 
             // Clear cached credentials
             var queries = powerBISession.TryFindElementByName("Queries");
-            var transformData = queries.TryFindElementsByName("Transform data");
-            var dataSourceSettings = powerBISession.TryClickAndFindElementByName(transformData[2], "Data source settings");
+            var transformData = queries.TryFindElementByName("Transform data");
+            var dataSourceSettings = powerBISession.TryClickAndFindElementByName(transformData, "Data source settings");
             var dataSourceSettingsDialog = powerBISession.TryClickAndFindElementByAccessibilityId(dataSourceSettings, "ManageDataSourcesDialog");
             var clearPermissions = dataSourceSettingsDialog.TryFindElementsByName("Clear Permissions");
             var clearPermissionsDialog = dataSourceSettingsDialog.TryClickAndFindElementByAccessibilityId(clearPermissions[1], "MessageDialog", 10);
