@@ -73,7 +73,7 @@ namespace ADHConnectorTest
             close.Click();
 
             // Open ADH Connector
-            var getData = powerBISession.FindElementByXPath("//Button[@Name='Get data']");
+            var getData = powerBISession.FindElementByXPath("//Button[@Name='Connect to data from multiple sources.']");
             var getDataWindow = powerBISession.TryClickAndFindElementByAccessibilityId(getData, "DataSourceGalleryDialog");
             var search = getDataWindow.FindElementByName("Search");
             search.SendKeys("AVEVA");
