@@ -66,18 +66,18 @@
     <Compile Include="resources.resx">
       <SubType>Code</SubType>
     </Compile>
-    <Content Include="client_id.placeholder">
+    <Compile Include="client_id.placeholder">
       <SubType>Content</SubType>
-    </Content>
+    </Compile>
     <Content Include="ADHConnector.query.pq">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="tenant_id.placeholder">
+    <Compile Include="tenant_id.placeholder">
       <SubType>Content</SubType>
-    </Content>
-    <Content Include="url.placeholder">
+    </Compile>
+    <Compile Include="url.placeholder">
       <SubType>Content</SubType>
-    </Content>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="BuildExtension" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v12.0.dll">
