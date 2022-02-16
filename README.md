@@ -1,5 +1,8 @@
 # Authorization Code Flow + PKCE Sample and Test for Power BI Desktop
 
+| :loudspeaker: **Notice**: This sample has been Archived. Dependencies will not be updated and pipelines will not be run. Please contact samples@osisoft.com or visit The OSIsoft Feedback Site for comments |
+| -----------------------------------------------------------------------------------------------|  
+
 **Version:** 1.0.18
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/OCS/osisoft.sample-ocs-authentication_authorization-powerbi?repoName=osisoft%2Fsample-ocs-authentication_authorization-powerbi&branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2608&repoName=osisoft%2Fsample-ocs-authentication_authorization-powerbi&branchName=main)
