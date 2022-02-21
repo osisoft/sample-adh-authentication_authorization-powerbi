@@ -5,8 +5,6 @@
 
 **Version:** 1.0.18
 
-[![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/OCS/osisoft.sample-ocs-authentication_authorization-powerbi?repoName=osisoft%2Fsample-ocs-authentication_authorization-powerbi&branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2608&repoName=osisoft%2Fsample-ocs-authentication_authorization-powerbi&branchName=main)
-
 The OCS Connector for Power BI Desktop is used to get data from the OCS API into Power BI Desktop. The connector uses the OAuth Authorization Code with PKCE flow to connect to the API and get an access token.
 
 ## Prerequisites
