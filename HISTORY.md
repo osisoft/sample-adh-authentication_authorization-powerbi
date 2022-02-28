@@ -1,5 +1,9 @@
 # Version History
 
+## ARCHIVED / 2022-02-18
+
+- Archiving sample in favor of the [OSIsoft Cloud Services Power BI Connector](https://docs.osisoft.com/bundle/ocs-docs-main/page/visualize-data/power-bi-connector.html).
+
 ## 1.0.18 / 2021-11-12
 
 - Add support for a community id to make communities API calls
