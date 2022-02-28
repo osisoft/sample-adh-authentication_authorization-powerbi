@@ -3,7 +3,10 @@
 | :loudspeaker: **Notice**: Samples have been updated to reflect that they work on AVEVA Data Hub. The samples also work on OSIsoft Cloud Services unless otherwise noted. |
 | -----------------------------------------------------------------------------------------------|  
 
-**Version:** 1.1.0
+| :loudspeaker: **Notice**: This sample has been Archived. Dependencies will not be updated and pipelines will not be run. Please contact samples@osisoft.com or visit [The OSIsoft Feedback Site](https://feedback.osisoft.com/) for comments |
+| -----------------------------------------------------------------------------------------------|  
+
+**Version:** Archived
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/ADH/aveva.sample-adh-authentication_authorization-powerbi?branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2608&branchName=main)
 
