@@ -3,20 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "OCSConnector", "OCSConnector\OCSConnector.mproj", "{4EBCB3F4-1799-44BF-84C1-9FBA08E44F9D}"
+Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "ADHConnector", "ADHConnector\ADHConnector.mproj", "{4EBCB3F4-1799-44BF-84C1-9FBA08E44F9D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5EC2A5D1-800D-4AEB-8A46-CD4A2EC5DF9F}"
 	ProjectSection(SolutionItems) = preProject
-                .editorconfig = .editorconfig
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		azure-pipelines.yml = azure-pipelines.yml
+		CODEOWNERS = CODEOWNERS
 		Directory.Build.props = Directory.Build.props
 		HISTORY.md = HISTORY.md
-                polaris.yml = polaris.yml
+		LICENSE = LICENSE
+		polaris.yml = polaris.yml
 		README.md = README.md
-                stylecop.json = stylecop.json
+		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCSConnectorTest", "OCSConnectorTest\OCSConnectorTest.csproj", "{2C4B15F5-887A-49FC-88B7-1EF26B0DCBBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADHConnectorTest", "ADHConnectorTest\ADHConnectorTest.csproj", "{2C4B15F5-887A-49FC-88B7-1EF26B0DCBBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

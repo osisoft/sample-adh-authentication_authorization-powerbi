@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OCSConnectorTest
+namespace ADHConnectorTest
 {
     public class AppSettings
     {

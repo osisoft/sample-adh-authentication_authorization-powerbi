@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Threading;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
 
-namespace OCSConnectorTest
+namespace ADHConnectorTest
 {
     public class UnitTests
     {
         public static AppSettings Settings { get; set; }
 
         [Fact]
-        public void OCSConnectorTest()
+        public void ADHConnectorTest()
         {
             // Load test settings
             Settings = JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\appsettings.json"));
@@ -54,8 +55,8 @@ namespace OCSConnectorTest
 
             // Clear cached credentials
             var queries = powerBISession.TryFindElementByName("Queries");
-            var transformData = queries.TryFindElementsByName("Transform data");
-            var dataSourceSettings = powerBISession.TryClickAndFindElementByName(transformData[2], "Data source settings");
+            var transformData = queries.TryFindElementByName("Transform data");
+            var dataSourceSettings = powerBISession.TryClickAndFindElementByName(transformData, "Data source settings");
             var dataSourceSettingsDialog = powerBISession.TryClickAndFindElementByAccessibilityId(dataSourceSettings, "ManageDataSourcesDialog");
             var clearPermissions = dataSourceSettingsDialog.TryFindElementsByName("Clear Permissions");
             var clearPermissionsDialog = dataSourceSettingsDialog.TryClickAndFindElementByAccessibilityId(clearPermissions[1], "MessageDialog", 10);
@@ -71,18 +72,18 @@ namespace OCSConnectorTest
             var close = dataSourceSettingsDialog.TryFindElementByName("Close");
             close.Click();
 
-            // Open OCS Connector
-            var getData = powerBISession.TryFindElementByName("Get data");
+            // Open ADH Connector
+            var getData = powerBISession.FindElementByXPath("//Button[@Name='Connect to data from multiple sources.']");
             var getDataWindow = powerBISession.TryClickAndFindElementByAccessibilityId(getData, "DataSourceGalleryDialog");
             var search = getDataWindow.FindElementByName("Search");
-            search.SendKeys("OSI");
+            search.SendKeys("AVEVA");
 
-            var sample = getDataWindow.TryFindElementByName("OSIsoft Cloud Services Sample (Beta)");
+            var sample = getDataWindow.TryFindElementByName("AVEVA Data Hub Sample (Beta)");
             var connect = getDataWindow.TryClickAndFindElementByName(sample, "Connect");
 
             // Enter query info
             var builderDialog = powerBISession.TryClickAndFindElementByAccessibilityId(connect, "BuilderDialog");
-            var uri = builderDialog.TryFindElementsByName("OSIsoft Cloud Services API Path");
+            var uri = builderDialog.TryFindElementsByName("AVEVA Data Hub API Path");
             uri[1].SendKeys($"{Settings.OcsAddress}/api/v1/Tenants/{Settings.OcsTenantId}/Namespaces");
 
             var timeout = builderDialog.TryFindElementsByName("Timeout (optional)");

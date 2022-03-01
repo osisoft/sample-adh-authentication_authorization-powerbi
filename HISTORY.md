@@ -4,6 +4,11 @@
 
 - Archiving sample in favor of the [OSIsoft Cloud Services Power BI Connector](https://docs.osisoft.com/bundle/ocs-docs-main/page/visualize-data/power-bi-connector.html).
 
+## 1.1.0 / 2022-01-27
+
+- Updated for AVEVA Data Hub
+- Updated dependencies
+
 ## 1.0.18 / 2021-11-12
 
 - Add support for a community id to make communities API calls
@@ -53,7 +58,7 @@
 ## 1.0.7 / 2020-08-04
 
 - Add documentation name for connector dialog
-- Convert ocsUri and apiUri parameters to single url parameter using Uri.Type
+- Convert adhUri and apiUri parameters to single url parameter using Uri.Type
 
 ## 1.0.6 / 2020-07-29
 

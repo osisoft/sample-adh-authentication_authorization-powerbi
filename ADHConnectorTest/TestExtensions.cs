@@ -8,7 +8,7 @@ using Appium.Interfaces.Generic.SearchContext;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Interfaces;
 
-namespace OCSConnectorTest
+namespace ADHConnectorTest
 {
     public static class TestExtensions
     {

@@ -1,4 +1,4 @@
-﻿section OCSConnector_Sample;
+﻿section ADHConnector_Sample;
 
 // Tenant-Specific Values
 tenant_id = Text.FromBinary(Extension.Contents("tenant_id"));
@@ -6,7 +6,7 @@ tenant_id = Text.FromBinary(Extension.Contents("tenant_id"));
 // Note: Client ID should be an Authorization Code Client with the below redirect_uri and logout_uri
 client_id = Text.FromBinary(Extension.Contents("client_id"));
 
-// OCS values
+// ADH values
 resource = Text.FromBinary(Extension.Contents("url"));
 authorize_uri = Text.Combine({resource, "identity/connect/authorize"}); 
 token_uri = Text.Combine({resource, "identity/connect/token"});
@@ -41,17 +41,17 @@ Base64Encode = (str as binary) =>
 windowWidth = 720;
 windowHeight = 1024;
 
-[DataSource.Kind="OCSConnector_Sample", Publish="OCSConnector_Sample.Publish"]
-shared OCSConnector_Sample.Contents = Value.ReplaceType(OCSConnectorImpl, OCSConnectorType);
+[DataSource.Kind="ADHConnector_Sample", Publish="ADHConnector_Sample.Publish"]
+shared ADHConnector_Sample.Contents = Value.ReplaceType(ADHConnectorImpl, ADHConnectorType);
 
-OCSConnectorType = type function(
+ADHConnectorType = type function(
     url as (Uri.Type meta [
-        Documentation.FieldCaption = "OSIsoft Cloud Services API Path",
-        Documentation.FieldDescription = "OSIsoft Cloud Services API path and parameters",
-        Documentation.SampleValues = {"https://dat-b.osisoft.com/api/v1/Tenants/{tenantId}/Namespaces"}
+        Documentation.FieldCaption = "AVEVA Data Hub API Path",
+        Documentation.FieldDescription = "AVEVA Data Hub API path and parameters",
+        Documentation.SampleValues = {"https://uswe.datahub.connect.aveva.com/api/v1/Tenants/{tenantId}/Namespaces"}
     ]),
     optional communityId as (type text meta [
-        Documentation.FieldCaption = "OSIsoft Cloud Services Community ID",
+        Documentation.FieldCaption = "AVEVA Data Hub Community ID",
         Documentation.FieldDescription = "Id of the Community to use if making a call to a Communities API",
         Documentation.SampleValues = {"0000000-0000-0000-0000-000000000000"}
     ]),
@@ -61,10 +61,10 @@ OCSConnectorType = type function(
         Documentation.SampleValues = {100}
     ])) as binary meta [
         Documentation.LongDescription = "Raw data returned from API, usually JSON or CSV",
-        Documentation.Name = "OSIsoft Cloud Services API Request"
+        Documentation.Name = "AVEVA Data Hub API Request"
     ];
 
-OCSConnectorImpl = (url as text, optional communityId as text, optional timeout as number) =>
+ADHConnectorImpl = (url as text, optional communityId as text, optional timeout as number) =>
     let
         communityIdHeader = [#"Community-id" = communityId],
         requestTimeoutHeader = if timeout <> null then [#"Request-Timeout" = Number.ToText(timeout)] else null,
@@ -89,8 +89,8 @@ OCSConnectorImpl = (url as text, optional communityId as text, optional timeout 
         source;
 
 // Data Source Kind description
-OCSConnector_Sample = [
-    TestConnection = (dataSourcePath) => { "OCSConnector_Sample.Contents", dataSourcePath },
+ADHConnector_Sample = [
+    TestConnection = (dataSourcePath) => { "ADHConnector_Sample.Contents", dataSourcePath },
     Authentication = [
         OAuth = [
             StartLogin = StartLogin,
@@ -168,16 +168,16 @@ TokenMethod = (grantType, tokenField, code) =>
         result;
 
 // Data Source UI publishing description
-OCSConnector_Sample.Publish = [
+ADHConnector_Sample.Publish = [
     Beta = true,
     Category = "Online Services",
     ButtonText = { Extension.LoadString("ButtonTitle"), Extension.LoadString("ButtonHelp") },
     LearnMoreUrl = "https://powerbi.microsoft.com/",
-    SourceImage = OCSConnector_Sample.Icons,
-    SourceTypeImage = OCSConnector_Sample.Icons
+    SourceImage = ADHConnector_Sample.Icons,
+    SourceTypeImage = ADHConnector_Sample.Icons
 ];
 
-OCSConnector_Sample.Icons = [
-    Icon16 = { Extension.Contents("OCSConnector_Sample16.png"), Extension.Contents("OCSConnector_Sample20.png"), Extension.Contents("OCSConnector_Sample24.png"), Extension.Contents("OCSConnector_Sample32.png") },
-    Icon32 = { Extension.Contents("OCSConnector_Sample32.png"), Extension.Contents("OCSConnector_Sample40.png"), Extension.Contents("OCSConnector_Sample48.png"), Extension.Contents("OCSConnector_Sample64.png") }
+ADHConnector_Sample.Icons = [
+    Icon16 = { Extension.Contents("ADHConnector_Sample16.png"), Extension.Contents("ADHConnector_Sample20.png"), Extension.Contents("ADHConnector_Sample24.png"), Extension.Contents("ADHConnector_Sample32.png") },
+    Icon32 = { Extension.Contents("ADHConnector_Sample32.png"), Extension.Contents("ADHConnector_Sample40.png"), Extension.Contents("ADHConnector_Sample48.png"), Extension.Contents("ADHConnector_Sample64.png") }
 ];
